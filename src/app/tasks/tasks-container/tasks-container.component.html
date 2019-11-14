@@ -1,0 +1,22 @@
+<div class="row">
+
+  <div class="col-sm">
+    <h3>Tasks</h3>
+    <div *ngIf="tasks$ | async as tasks">
+      <rva-task-list [tasks]="tasks"
+                     (taskClick)="select($event)">
+      </rva-task-list>
+    </div>
+  </div>
+
+  <div class="col-sm">
+    <div *ngIf="selectedTask">
+      <rva-task-detail [task]="selectedTask"
+                       (done)="done($event)">
+      </rva-task-detail>
+
+      <rva-task-history [task]="selectedTask">
+      </rva-task-history>
+    </div>
+  </div>
+</div>

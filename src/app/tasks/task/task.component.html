@@ -1,0 +1,8 @@
+<div *ngIf="task$ | async as task">
+  <rva-task-detail [task]="task"
+                   (done)="done()">
+  </rva-task-detail>
+
+  <rva-task-history [task]="task">
+  </rva-task-history>
+</div>

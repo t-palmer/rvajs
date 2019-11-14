@@ -1,0 +1,7 @@
+<div class="btn-group btn-group-toggle">
+  <label class="btn-primary" ngbButtonLabel
+         *ngFor="let state of keys(this.flags)">
+    <input type="checkbox" ngbButton
+           [(ngModel)]="flags[state]">{{state}}
+  </label>
+</div>
