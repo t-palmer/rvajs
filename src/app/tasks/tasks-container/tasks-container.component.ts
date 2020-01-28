@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../task.service';
 import { Observable } from 'rxjs';
 import { Task } from '../tasks.types';
-import { tap } from 'rxjs/operators';
+import { TaskMultiService } from '../task-multi.service';
 
 @Component({
   selector: 'rva-tasks-container',
@@ -13,20 +13,17 @@ export class TasksContainerComponent implements OnInit {
   public tasks$: Observable<Task[]>;
   public selectedTask: Task;
 
-  private taskList: any[];
-
   constructor(
-    private taskService: TaskService
+    private taskService: TaskService,
+    private taskMultiService: TaskMultiService,
   ) { }
 
   ngOnInit() {
-    this.fetchTaskList();
-  }
-
-  private fetchTaskList() {
-    this.tasks$ = this.taskService.getTasks().pipe(
-      tap((taskList: Task[]) => this.taskList = taskList)
-    );
+    if (this.taskMultiService.isMulti()) {
+      this.tasks$ = this.taskMultiService.getTasks();
+    } else {
+      this.tasks$ = this.taskService.getTasks();
+    }
   }
 
   public select(task) {

@@ -5,7 +5,7 @@ import {Component, Input, OnInit} from '@angular/core';
   template: `
     <div class="btn-group-toggle">
       <rva-flag-checkbox
-        *ngFor="let state of keys()"
+        *ngFor="let state of states()"
         [(flag)]="flags[state]"
         [label]="state"
       >
@@ -16,7 +16,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class DeclarativerFlagsComponent {
   @Input() flags: any;
 
-  public keys() {
+  public states() {
     return Object.keys(this.flags);
   }
 }
